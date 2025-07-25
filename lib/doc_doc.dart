@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/routing/app_router.dart';
 import 'core/routing/routes.dart';
 import 'core/theming/app_colors.dart';
-import 'features/on_boarding/ui/on_boarding.dart';
 
 class DocDoc extends StatelessWidget {
   final AppRouter appRouter;
@@ -15,7 +14,7 @@ class DocDoc extends StatelessWidget {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
-      child:  MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primaryColor: AppColors.mainBlue,
@@ -23,7 +22,6 @@ class DocDoc extends StatelessWidget {
         ),
         onGenerateRoute: appRouter.generateRoute,
         initialRoute: Routes.onBoarding,
-        home: OnBoarding(),
       ),
     );
   }
