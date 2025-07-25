@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import '../../features/login/ui/login.dart';
 import '../../features/on_boarding/ui/on_boarding.dart';
