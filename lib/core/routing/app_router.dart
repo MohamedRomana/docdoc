@@ -1,6 +1,9 @@
 // ignore_for_file: unused_local_variable
 
+import 'package:docdoc/core/di/dependancy_injection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../features/login/logic/cubit/login_cubit.dart';
 import '../../features/login/ui/login.dart';
 import '../../features/on_boarding/ui/on_boarding.dart';
 import '../../features/splash/splash.dart';
@@ -16,7 +19,12 @@ class AppRouter {
       case Routes.onBoarding:
         return MaterialPageRoute(builder: (_) => OnBoarding());
       case Routes.login:
-        return MaterialPageRoute(builder: (_) => Login());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<LoginCubit>(),
+            child: Login(),
+          ),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
