@@ -1,6 +1,7 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:docdoc/core/di/dependancy_injection.dart';
+import 'package:docdoc/features/home/ui/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/login/logic/cubit/login_cubit.dart';
@@ -16,6 +17,8 @@ class AppRouter {
     switch (settings.name) {
       case Routes.splash:
         return MaterialPageRoute(builder: (_) => const Splash());
+      case Routes.home:
+        return MaterialPageRoute(builder: (_) => const Home());
       case Routes.onBoarding:
         return MaterialPageRoute(builder: (_) => OnBoarding());
       case Routes.login:
