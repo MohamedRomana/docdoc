@@ -1,9 +1,10 @@
+import 'package:docdoc/core/helper/extentions.dart';
 import 'package:docdoc/core/theming/app_colors.dart';
-import 'package:docdoc/features/login/data/model/login_request_body.dart';
 import 'package:docdoc/features/login/logic/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../core/routing/routes.dart';
 import 'widgets/bloc_listen_login.dart';
 import 'widgets/login_fields.dart';
 import 'widgets/welcome_text.dart';
@@ -57,27 +58,32 @@ class Login extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 32.h),
-                Align(
-                  alignment: Alignment.center,
-                  child: RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: 'Don\'t have an account? ',
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            color: AppColors.greyText,
+                InkWell(
+                  onTap: () {
+                    context.pushNamed(Routes.register);
+                  },
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: 'Don\'t have an account? ',
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              color: AppColors.greyText,
+                            ),
                           ),
-                        ),
-                        TextSpan(
-                          text: 'Sign Up',
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            color: AppColors.mainBlue,
-                            fontWeight: FontWeight.bold,
+                          TextSpan(
+                            text: 'Sign Up',
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              color: AppColors.mainBlue,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -93,12 +99,7 @@ class Login extends StatelessWidget {
   void validateThenDoLogin(BuildContext context) {
     final cubit = context.read<LoginCubit>();
     if (cubit.formKey.currentState!.validate()) {
-      cubit.emitLoginStates(
-        LoginRequestBody(
-          email: cubit.emailController.text,
-          password: cubit.passwordController.text,
-        ),
-      );
+      cubit.emitLoginStates();
     }
   }
 }

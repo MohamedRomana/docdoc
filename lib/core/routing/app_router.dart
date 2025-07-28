@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/login/logic/cubit/login_cubit.dart';
 import '../../features/login/ui/login.dart';
 import '../../features/on_boarding/ui/on_boarding.dart';
+import '../../features/register/logic/cubit/register_cubit.dart';
+import '../../features/register/ui/register.dart';
 import '../../features/splash/splash.dart';
 import 'routes.dart';
 
@@ -26,6 +28,13 @@ class AppRouter {
           builder: (_) => BlocProvider(
             create: (context) => getIt<LoginCubit>(),
             child: Login(),
+          ),
+        );
+      case Routes.register:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<RegisterCubit>(),
+            child: Register(),
           ),
         );
       default:
