@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:docdoc/core/helper/shared_pref_helper.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioFactory {
@@ -33,9 +34,9 @@ class DioFactory {
           final token = CacheHelper.getUserToken();
           if (token.isNotEmpty) {
             options.headers['Authorization'] = 'Bearer $token';
-            print('✅ Token added to request: $token');
+            debugPrint('✅ Token added to request: $token');
           } else {
-            print('⚠️ No token found, request may fail');
+            debugPrint('⚠️ No token found, request may fail');
           }
           return handler.next(options);
         },

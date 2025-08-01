@@ -7,9 +7,7 @@ import 'package:docdoc/features/login/logic/cubit/login_cubit.dart';
 import 'package:docdoc/features/register/data/repo/register_repo.dart';
 import 'package:docdoc/features/register/logic/cubit/register_cubit.dart';
 import 'package:get_it/get_it.dart';
-
 import '../../features/home/data/apis/home_api_service.dart';
-import '../../features/home/logic/home_cubit.dart';
 
 final getIt = GetIt.instance;
 

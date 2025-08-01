@@ -1,4 +1,5 @@
 import 'package:docdoc/core/networking/api_results.dart';
+import 'package:flutter/material.dart';
 import '../../../../core/networking/erro_handler.dart';
 import '../apis/home_api_service.dart';
 import '../models/specialization_response_model.dart';
@@ -13,8 +14,8 @@ class HomeRepo {
       final response = await _homeApiService.getSpecialization();
       return ApiResult.success(response);
     } catch (error, stackTrace) {
-      print('❌ Caught error in repo: $error');
-      print('📌 StackTrace: $stackTrace');
+      debugPrint('❌ Caught error in repo: $error');
+      debugPrint('📌 StackTrace: $stackTrace');
       return ApiResult.error(ErrorHandler.handle(error));
     }
   }

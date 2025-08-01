@@ -34,7 +34,7 @@ class Home extends StatelessWidget {
                       current is SpecializationSuccess ||
                       current is SpecializationError,
                   builder: (context, state) {
-                    print('STATE IS: ${state.runtimeType}');
+                    debugPrint('STATE IS: ${state.runtimeType}');
                     return state.maybeWhen(
                       specializationLoading: () {
                         return const Center(

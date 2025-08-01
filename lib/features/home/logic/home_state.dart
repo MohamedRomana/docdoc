@@ -1,4 +1,3 @@
-import 'package:docdoc/core/networking/erro_handler.dart';
 import 'package:docdoc/features/home/data/models/specialization_response_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'home_state.freezed.dart';
