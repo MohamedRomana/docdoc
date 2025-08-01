@@ -6,7 +6,7 @@ import '../../../../core/theming/app_colors.dart';
 
 class DoctorsListView extends StatelessWidget {
   final List<DoctorsList?> doctorsList;
-  const DoctorsListView({super.key,required this.doctorsList});
+  const DoctorsListView({super.key, required this.doctorsList});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class DoctorsListView extends StatelessWidget {
                   ),
                   SizedBox(height: 16.h),
                   Text(
-                    '${doctorsList[index]?.degree} | 05505050',
+                    '${doctorsList[index]?.degree} | ${doctorsList[index]?.phone}',
                     maxLines: 1,
                     style: TextStyle(
                       fontSize: 14.sp,

@@ -43,22 +43,30 @@ class Home extends StatelessWidget {
                           ),
                         );
                       },
-                      specializationSuccess: (specializationResponseModel) {
-                        var specializationList =
-                            specializationResponseModel.specializations;
+                      specializationSuccess: (specializations) {
+                        var specializationList = specializations;
                         return Column(
                           children: [
                             DoctorsSpecialityListView(
                               specializationDataList: specializationList ?? [],
                             ),
-                            SizedBox(height: 24.h),
-                            DoctorsListView(
-                              doctorsList:
-                                  specializationList?[0]!.doctorsList ?? [],
-                            ),
                           ],
                         );
                       },
+                      orElse: () => Text("State Not Matched"),
+                    );
+                  },
+                ),
+                SizedBox(height: 24.h),
+                BlocBuilder<HomeCubit, HomeState>(
+                  buildWhen: (previous, current) =>
+                      current is DoctorSuccess || current is DoctorError,
+                  builder: (context, state) {
+                    return state.maybeWhen(
+                      doctorSuccess: (doctorsList) {
+                        return DoctorsListView(doctorsList: doctorsList ?? []);
+                      },
+                      doctorError: (error) => Text(error),
                       orElse: () => Text("State Not Matched"),
                     );
                   },

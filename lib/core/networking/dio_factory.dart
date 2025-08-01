@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:docdoc/core/helper/shared_pref_helper.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioFactory {
@@ -22,14 +23,24 @@ class DioFactory {
   }
 
   static void getDioHeaders() {
-    dio?.options.headers = {
-      'Accept': 'application/json',
-      "Authorization":
-          "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3ZjYXJlLmludGVncmF0aW9uMjUuY29tL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNzU0MDY0Mzc4LCJleHAiOjE3NTQxNTA3NzgsIm5iZiI6MTc1NDA2NDM3OCwianRpIjoiWEV3SzhxTkpzRFhWWndHOCIsInN1YiI6IjQ1ODIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.T8bkj32DXth76NwV_aFPwhWl96yuHeCHifYLTSFtnTs",
-    };
+    dio?.options.headers = {'Accept': 'application/json'};
   }
 
   static void getDioInterceptors() {
+    dio?.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) async {
+          final token = CacheHelper.getUserToken();
+          if (token.isNotEmpty) {
+            options.headers['Authorization'] = 'Bearer $token';
+            print('✅ Token added to request: $token');
+          } else {
+            print('⚠️ No token found, request may fail');
+          }
+          return handler.next(options);
+        },
+      ),
+    );
     dio?.interceptors.add(
       PrettyDioLogger(
         requestHeader: true,

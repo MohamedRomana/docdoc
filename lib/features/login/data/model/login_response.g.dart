@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: unused_element
-
 part of 'login_response.dart';
 
 // **************************************************************************
@@ -28,7 +26,7 @@ Map<String, dynamic> _$LoginResponseToJson(LoginResponse instance) =>
 
 UserData _$UserDataFromJson(Map<String, dynamic> json) => UserData(
   userName: json['username'] as String?,
-  token: json['token'] as String?,
+  token: json['token'] as String,
 );
 
 Map<String, dynamic> _$UserDataToJson(UserData instance) => <String, dynamic>{

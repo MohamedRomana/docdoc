@@ -1,3 +1,4 @@
+import 'package:docdoc/core/helper/shared_pref_helper.dart';
 import 'package:docdoc/core/networking/api_results.dart';
 import 'package:docdoc/features/login/data/model/login_request_body.dart';
 import 'package:docdoc/features/login/logic/cubit/login_state.dart';
@@ -22,8 +23,9 @@ class LoginCubit extends Cubit<LoginState> {
       ),
     );
     response.when(
-      success: (loginResponse) {
+      success: (loginResponse) async {
         emit(LoginState.success(loginResponse));
+        await CacheHelper.setUserToken(loginResponse.userData?.token);
       },
       error: (error) {
         emit(LoginState.error(error: error.apiErrorModel.message ?? ""));

@@ -1,3 +1,4 @@
+import 'package:docdoc/core/helper/shared_pref_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/routing/app_router.dart';
@@ -21,7 +22,9 @@ class DocDoc extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white,
         ),
         onGenerateRoute: appRouter.generateRoute,
-        initialRoute: Routes.onBoarding,
+        initialRoute: CacheHelper.getUserToken() == ""
+            ? Routes.login
+            : Routes.home,
       ),
     );
   }
