@@ -1,15 +1,17 @@
+import 'package:docdoc/features/home/data/models/specialization_response_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/theming/app_colors.dart';
 
 class DoctorsListView extends StatelessWidget {
-  const DoctorsListView({super.key});
+  final List<DoctorsList?> doctorsList;
+  const DoctorsListView({super.key,required this.doctorsList});
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      itemCount: 10,
+      itemCount: doctorsList.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       separatorBuilder: (context, index) => SizedBox(height: 16.h),
@@ -36,7 +38,7 @@ class DoctorsListView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Dr. John ',
+                    doctorsList[index]?.name ?? '',
                     maxLines: 1,
                     style: TextStyle(
                       fontSize: 18.sp,
@@ -45,7 +47,7 @@ class DoctorsListView extends StatelessWidget {
                   ),
                   SizedBox(height: 16.h),
                   Text(
-                    'Speciality | 05505050',
+                    '${doctorsList[index]?.degree} | 05505050',
                     maxLines: 1,
                     style: TextStyle(
                       fontSize: 14.sp,

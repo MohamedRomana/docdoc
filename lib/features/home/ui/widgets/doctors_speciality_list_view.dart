@@ -1,17 +1,21 @@
+import 'package:docdoc/features/home/data/models/specialization_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/theming/app_colors.dart';
 
 class DoctorsSpecialityListView extends StatelessWidget {
-  const DoctorsSpecialityListView({super.key});
+  final List<SpecializationData?> specializationDataList;
+  const DoctorsSpecialityListView({
+    super.key,
+    required this.specializationDataList,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 100.h,
       child: ListView.separated(
-        itemCount: 10,
+        itemCount: specializationDataList.length,
         scrollDirection: Axis.horizontal,
         separatorBuilder: (context, index) => SizedBox(width: 16.w),
         itemBuilder: (context, index) => Container(
@@ -32,7 +36,10 @@ class DoctorsSpecialityListView extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 8.h),
-              Text('Speciality', style: TextStyle(fontSize: 14.sp)),
+              Text(
+                specializationDataList[index]?.name ?? '',
+                style: TextStyle(fontSize: 14.sp),
+              ),
             ],
           ),
         ),
